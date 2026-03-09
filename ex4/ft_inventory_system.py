@@ -18,7 +18,7 @@ def parse_input(argv: list[str]) -> dict | None:
             return None
         try:
             item_count = int(arg[1])
-            data.update({arg[0]:item_count})
+            data.update({arg[0]: item_count})
         except ValueError as e:
             print(f"Non numeric value for {arg[0]}")
             print("Error:", e)
@@ -77,9 +77,9 @@ def invontory_statistic(data: dict) -> None:
         if item_count is None:
             continue
         if item_count >= 5:
-            moderate.update({item:item_count})
+            moderate.update({item: item_count})
         elif item_count <= 1:
-            scarce.update({item:item_count})
+            scarce.update({item: item_count})
     print("Most abundant: ", end="")
     print_most_abundant(moderate)
     print("Least abundant: ", end="")
