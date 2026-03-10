@@ -103,9 +103,9 @@ def get_rare_achievements(data: dict[str, list[str]]) -> set | None:
     for player in data:
         for achievement in data[player]:
             if is_duplicate(data[player], achievement):
-                break
+                continue
             if in_other_player(data, player, achievement):
-                break
+                continue
             rare += [achievement]
     return set(rare) if rare else None
 

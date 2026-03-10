@@ -437,10 +437,11 @@ def prime_numbers(number: int) -> None:
         counter = 2
         if number <= 1:
             return False
-        for num in range(2, number + 1):
-            if num % counter == 0:
-                return True
-        return False
+        while counter < number:
+            if number % counter == 0:
+                return False
+            counter += 1
+        return True
 
     def first_prime():
         num = 2

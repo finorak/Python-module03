@@ -6,8 +6,11 @@ def parse_input(argv: list[str]) -> list[int] | bool:
     argv_cpy = []
     parsing = False
     if len(argv) == 1:
-        print(f"Parsing coordinates: \"{argv[0]}\"")
+        temp = argv[0]
         argv = argv[0].split(",")
+        if len(argv) != 3:
+            return False
+        print(f"Parsing coordinates: \"{temp}\"")
         parsing = True
     for arg in argv:
         try:
@@ -33,7 +36,8 @@ def coorinate_calculation(pos1: tuple, pos2: tuple) -> float:
 
 
 def main(argc: int, argv: list[str]) -> None:
-    if argc == 1 and argc != 2 and argc != 4:
+    print("=== Game Coordinate System ===\n")
+    if argc not in (2, 4):
         return
     argv_cpy = parse_input(argv[1:])
     if not argv_cpy:
@@ -56,7 +60,6 @@ def test() -> None:
 
 
 if __name__ == "__main__":
-    print("=== Game Coordinate System ===\n")
     if len(sys.argv) == 1:
         test()
     else:
