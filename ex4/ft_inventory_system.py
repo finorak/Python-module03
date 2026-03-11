@@ -10,6 +10,32 @@ def ft_join(data: list, char: str) -> None:
             print(data[i])
 
 
+def ft_int(string: str) -> int | None:
+    value = 0
+    index = 0
+    int_map = {
+            "0": 0,
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            }
+    if string[0] == '+' or string[0] == "-":
+        index += 1
+    if len(string) == 1:
+        return None
+    for i in string[1:]:
+        if i not in int_map:
+            return None
+        value += int_map[i] * 10
+    return value
+
+
 def parse_input(argv: list[str]) -> dict | None:
     data = dict()
     for arg in argv:
@@ -17,7 +43,9 @@ def parse_input(argv: list[str]) -> dict | None:
         if len(arg) != 2:
             return None
         try:
-            item_count = int(arg[1])
+            item_count = ft_int(arg[1])
+            if item_count is None:
+                return None
             data.update({arg[0]: item_count})
         except ValueError as e:
             print(f"Non numeric value for {arg[0]}")
@@ -100,16 +128,18 @@ def management_suggestion(data: dict) -> set | None:
     return set(suggestions) if suggestions else None
 
 
+def transform_to_list(data: dict) -> list:
+    lst = []
+    for el in data:
+        lst += [el]
+    return lst
+
+
 def dictionary_propreties(data: dict, chr_value: str) -> None:
-    keys = []
-    values = []
-    for key, value in data.items():
-        keys += [key]
-        values += [value]
     print("Dictionary keys: ", end="")
-    ft_join(keys, ", ")
+    ft_join(transform_to_list(data.keys()), ", ")
     print("Dictionary values: ", end="")
-    ft_join(values, ", ")
+    ft_join(transform_to_list(data.values()), ", ")
     print(f"Sample lookup - '{chr_value}' in invontory: {chr_value in data}")
 
 

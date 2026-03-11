@@ -390,7 +390,7 @@ def get_treasure_event(data: list[dict]) -> list:
     return [treasure, level]
 
 
-def stream_analytics(data: dict, data_count: int) -> None:
+def stream_analytics(data: list[dict], data_count: int) -> None:
     print("\n=== Stream Analytics ===")
     print(f"Total events processed: {data_count}")
     high_level = get_heigh_level_player(data)
